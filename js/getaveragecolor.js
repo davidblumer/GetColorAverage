@@ -1,38 +1,36 @@
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function() {
+        var files = document.getElementsByTagName('img');
 
-
-    var files = document.getElementByTagName('img');
-
-alert("asdsad");
     for (var i = 0; i < files.length; i++) {
-        var rgbStr = addImage(files[i].src);
-        alert('files[i].src');
+                
+        var img = document.createElement('img');
+        
+        img.src = files[i].src;
+        
+        var rgbStr = addImage(img);
+        
         var box = files[i];
         box.style.backgroundColor = rgbStr;
-        box.style.width = files[i].naturalWidth + 'px';
-        box.style.height = files[i].naturalHeight + 'px';
+        box.style.width = img.naturalWidth + 'px';
+        box.style.height = img.naturalHeight + 'px';
 
     }
-};
+}, false);
 
-function addImage(imgSrc) {
-    var img = document.createElement('img');
+function addImage(img) {
+    
     var element = document.createElement('div');
     element.className = 'row';
     element.innerHTML =
             '<div class="cell color">' +
             '  <div class="box"></div>' +
             '</div>';
+    
+    
+    var rgb = getAverageColor(img);
+    var rgbStr = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
 
-    img.src = imgSrc;
-    img.onload = function () {
-        var rgb = getAverageColor(img);
-        var rgbStr = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
-
-        return rgbStr;
-
-    };
-
+    
     document.getElementById('images').appendChild(element);
 }
 
