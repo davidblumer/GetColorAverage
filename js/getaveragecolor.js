@@ -3,6 +3,7 @@ window.onload = function () {
 
     var files = document.getElementByTagName('img');
 
+alert("asdsad");
     for (var i = 0; i < files.length; i++) {
         var rgbStr = addImage(files[i].src);
         alert('files[i].src');
